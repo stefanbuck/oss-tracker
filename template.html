@@ -1,11 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OSS Tracker</title>
-</head>
-<body>
-${table}
-</body>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+        font-size: 16px;
+        color: #1a202c;
+        line-height: 1.6rem;
+        background: linear-gradient(40deg, #4d63ce, #c249ba);
+        min-height: 100vh;
+      }
+
+      a,
+      a:visited {
+        color: #1a202c;
+      }
+
+      .container {
+        margin: auto;
+        width: 480px;
+        padding: 24px 0;
+      }
+
+      .info {
+        margin-bottom: 24px;
+      }
+
+      .total-duration {
+        display: block;
+        font-size: 1.8rem;
+      }
+
+      table {
+        border-spacing: 1;
+        border-collapse: collapse;
+        width: 100%;
+        column-span: 0;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th {
+        text-align: left;
+        font-weight: unset;
+        height: 38px;
+        background: #36304a;
+        font-size: 18px;
+        color: #edf2f7;
+      }
+
+      thead th:first-child,
+      tbody td:first-child {
+        padding-left: 24px;
+      }
+
+      thead th:last-child,
+      tbody td:last-child {
+        padding-right: 24px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f5f5f5;
+      }
+
+      td {
+        padding: 12px 6px;
+      }
+
+      footer {
+        padding-top: 24px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="info">
+        Hours spent on Open Source since March 6, 2020
+        <span class="total-duration">${total}</span>
+      </div>
+      <table>
+        <thead>
+          <th>Date</th>
+          <th>Duration</th>
+          <th>Project</th>
+        </thead>
+        <tbody>
+          ${tableBody}
+        </tbody>
+      </table>
+      <footer>
+        Source code availble on
+        <a href="https://github.com/stefanbuck/oss-tracker">GitHub</a>
+      </footer>
+    </div>
+  </body>
 </html>
