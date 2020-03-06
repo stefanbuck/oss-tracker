@@ -1,0 +1,18 @@
+name: Time Tracking 
+on:
+  issue_comment:
+    types: [created, edited]
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: ./update.js
+    - name: Commit report
+      run: |
+        git config --global user.name 'Stefan Buck'
+        git config --global user.email 'stefanbuck@users.noreply.github.com'
+        git commit -am "Update data"
+        git push
