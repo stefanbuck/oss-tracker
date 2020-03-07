@@ -58,14 +58,20 @@ let total = '';
 let tableBody = '';
 
 tableBody = Object.entries(data)
+  .reverse()
   .map(([id, { created_at, updated_at, body }]) => {
     const durationInSeconds =
       (new Date(updated_at).getTime() - new Date(created_at).getTime()) / 1000;
     totalDuration += durationInSeconds;
 
+    let durationColumn = '<i>Currently working on this</i>';
+    if (durationInSeconds > 0) {
+      durationColumn = timeConvert(durationInSeconds)
+    }
+
     return `<tr>
         <td>${dateConvert(created_at)}</td>
-        <td>${timeConvert(durationInSeconds)}</td>
+        <td>${durationColumn}</td>
         <td>${body}</td>
     </tr>`;
   })
