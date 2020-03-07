@@ -7,7 +7,12 @@ const data = require("./data.json");
 const html = fs.readFileSync("./template.html", "utf8");
 const githubEvent = require(process.env.GITHUB_EVENT_PATH);
 
-const { id, body, created_at, updated_at } = githubEvent.comment;
+const { id, body, created_at, updated_at, html_url } = githubEvent.comment;
+
+if (!html_url.startsWith('https://github.com/stefanbuck/oss-tracker/issues/1#')) {
+  console.log('Skip, this is a regular issue comment');
+  process.exit(0);
+}
 
 data[id] = {
     body,
