@@ -54,7 +54,7 @@ function dateConvert(dateString) {
 
   return [
     months[date.getMonth()],
-    `${date.getDay() + 1},`,
+    `${date.getDate()},`,
     date.getFullYear()
   ].join(" ");
 }
