@@ -95,6 +95,22 @@
         line-height: 1.6rem;
       }
 
+      .barchart {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .barchart-item {
+        display: inline-block;
+      }
+
+      .barchart-item--label {
+        display: inline-block;
+        padding: 6px 0 6px 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
       @media only screen and (max-width: 640px) {
         .mobile-none {
           display: none;
@@ -120,6 +136,7 @@
             <span class="total-duration">${total}</span> working on different
             Open Source projects.
           </p>
+          <div class="barchart">${chart}</div>
         </div>
         <div class="container">
           <table>

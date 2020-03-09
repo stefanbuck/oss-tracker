@@ -22,7 +22,7 @@ data[id] = {
 
 // Update index.html
 
-let totalDuration = 0;
+let durationStats = {};
 
 function timeConvert(seconds) {
   let hours = Math.floor(seconds / 3600);
@@ -61,16 +61,17 @@ function dateConvert(dateString) {
 
 let total = '';
 let tableBody = '';
+let chart = ''
 
 tableBody = Object.entries(data)
   .reverse()
   .map(([id, { created_at, updated_at, body }]) => {
     const durationInSeconds =
       (new Date(updated_at).getTime() - new Date(created_at).getTime()) / 1000;
-    totalDuration += durationInSeconds;
 
     let durationColumn = '<i>Currently working on this</i>';
     if (durationInSeconds > 0) {
+      durationStats[body] = (durationStats[body] || 0) + durationInSeconds;
       durationColumn = timeConvert(durationInSeconds)
     }
 
@@ -81,6 +82,20 @@ tableBody = Object.entries(data)
     </tr>`;
   })
   .join("\n");
+
+const totalDuration = Object.values(durationStats).reduce((memo, value) => {
+ return memo + value;
+}, 0);
+
+const chartColors = ['#a0c659', '#00BE96', '#c68759']
+chart = Object.entries(durationStats).map(([name, projectDuration], index) => {
+    const label = timeConvert(projectDuration);
+    const percent = ((100/ totalDuration) * projectDuration);
+
+  return `<div title="${timeConvert(projectDuration)}" style="width: ${percent}%; background-color: ${chartColors[index]};" class="barchart-item">
+    <span class="barchart-item--label">${name}</span>
+  </div>`
+}).join('')
 
 total = timeConvert(totalDuration);
 
