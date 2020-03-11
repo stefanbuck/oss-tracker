@@ -5,19 +5,22 @@
 const fs = require("fs");
 const data = require("./data.json");
 const html = fs.readFileSync("./template.html", "utf8");
-const githubEvent = require(process.env.GITHUB_EVENT_PATH);
 
-const { id, body, created_at, updated_at, html_url } = githubEvent.comment;
+if (process.env.GITHUB_ACTION) {
+  const githubEvent = require(process.env.GITHUB_EVENT_PATH);
 
-if (!html_url.startsWith('https://github.com/stefanbuck/oss-tracker/issues/1#')) {
-  console.log('Skip, this is a regular issue comment');
-  process.exit(0);
-}
-
-data[id] = {
-    body,
-    created_at,
-    updated_at,
+  const { id, body, created_at, updated_at, html_url } = githubEvent.comment;
+  
+  if (!html_url.startsWith('https://github.com/stefanbuck/oss-tracker/issues/1#')) {
+    console.log('Skip, this is a regular issue comment');
+    process.exit(0);
+  }
+  
+  data[id] = {
+      body,
+      created_at,
+      updated_at,
+  }
 }
 
 // Update index.html
@@ -102,5 +105,5 @@ total = timeConvert(totalDuration);
 const finalHTML = eval(`\`${html}\``);
 
 // Write files to disk
-fs.writeFileSync('./data.json', JSON.stringify(data, null, ' '));
+if (process.env.GITHUB_ACTION) fs.writeFileSync('./data.json', JSON.stringify(data, null, ' '));
 fs.writeFileSync("./public/index.html", finalHTML);
