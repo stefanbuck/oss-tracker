@@ -98,17 +98,19 @@
       .barchart {
         border-radius: 12px;
         overflow: hidden;
+        display: flex;
       }
 
       .barchart-item {
         display: inline-block;
+        height: 18px;
       }
 
-      .barchart-item--label {
+      .dot {
         display: inline-block;
-        padding: 6px 0 6px 12px;
-        font-size: 0.9rem;
-        font-weight: 600;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
       }
 
       @media only screen and (max-width: 640px) {

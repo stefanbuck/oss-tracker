@@ -98,17 +98,19 @@
       .barchart {
         border-radius: 12px;
         overflow: hidden;
+        display: flex;
       }
 
       .barchart-item {
         display: inline-block;
+        height: 18px;
       }
 
-      .barchart-item--label {
+      .dot {
         display: inline-block;
-        padding: 6px 0 6px 12px;
-        font-size: 0.9rem;
-        font-weight: 600;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
       }
 
       @media only screen and (max-width: 640px) {
@@ -136,13 +138,7 @@
             <span class="total-duration">7 hours and 18 minutes</span> working on different
             Open Source projects.
           </p>
-          <div class="barchart"><div title="22 minutes" style="width: 5.09408857631629%; background-color: #a0c659;" class="barchart-item">
-    <span class="barchart-item--label">Pull Request Badge</span>
-  </div><div title="4 hours and 44 minutes" style="width: 65.00285116897928%; background-color: #00BE96;" class="barchart-item">
-    <span class="barchart-item--label">OSS Tracker</span>
-  </div><div title="2 hours and 11 minutes" style="width: 29.903060254704428%; background-color: #c68759;" class="barchart-item">
-    <span class="barchart-item--label">OctoLinker</span>
-  </div></div>
+          <div class="barchart"><div title="22 minutes" style="width: 5.09408857631629%; background-color: #89e051;" class="barchart-item"></div><div title="4 hours and 44 minutes" style="width: 65.00285116897928%; background-color: #f1e05a;" class="barchart-item"></div><div title="2 hours and 11 minutes" style="width: 29.903060254704428%; background-color: #00ADD8;" class="barchart-item"></div></div>
         </div>
         <div class="container">
           <table>
@@ -155,37 +151,37 @@
               <tr>
         <td>March 11, 2020</td>
         <td>22 minutes</td>
-        <td>Pull Request Badge</td>
+        <td><div class="dot" style="background-color: #89e051"></div> Pull Request Badge</td>
     </tr>
 <tr>
         <td>March 9, 2020</td>
         <td>56 minutes</td>
-        <td>OSS Tracker</td>
+        <td><div class="dot" style="background-color: #f1e05a"></div> OSS Tracker</td>
     </tr>
 <tr>
         <td>March 8, 2020</td>
         <td>1 hours and 9 minutes</td>
-        <td>OctoLinker</td>
+        <td><div class="dot" style="background-color: #00ADD8"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 8, 2020</td>
         <td>45 minutes</td>
-        <td>OctoLinker</td>
+        <td><div class="dot" style="background-color: #00ADD8"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 7, 2020</td>
         <td>1 hours and 37 minutes</td>
-        <td>OSS Tracker</td>
+        <td><div class="dot" style="background-color: #f1e05a"></div> OSS Tracker</td>
     </tr>
 <tr>
         <td>March 7, 2020</td>
         <td>16 minutes</td>
-        <td>OctoLinker</td>
+        <td><div class="dot" style="background-color: #00ADD8"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 6, 2020</td>
         <td>2 hours and 10 minutes</td>
-        <td>OSS Tracker</td>
+        <td><div class="dot" style="background-color: #f1e05a"></div> OSS Tracker</td>
     </tr>
             </tbody>
           </table>

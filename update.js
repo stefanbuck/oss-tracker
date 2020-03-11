@@ -66,22 +66,28 @@ let total = '';
 let tableBody = '';
 let chart = ''
 
+const chartColors = ['#89e051',  '#f1e05a', '#00ADD8', '#b07219', '#384d54', '#e34c26']
+const projectColors = {};
+
 tableBody = Object.entries(data)
   .reverse()
   .map(([id, { created_at, updated_at, body }]) => {
+    const projectName = body.trim();
     const durationInSeconds =
       (new Date(updated_at).getTime() - new Date(created_at).getTime()) / 1000;
 
     let durationColumn = '<i>Currently working on this</i>';
     if (durationInSeconds > 0) {
-      durationStats[body] = (durationStats[body] || 0) + durationInSeconds;
+      durationStats[projectName] = (durationStats[projectName] || 0) + durationInSeconds;
       durationColumn = timeConvert(durationInSeconds)
     }
+
+    const color = projectColors[projectName] = projectColors[projectName] || chartColors[Object.keys(projectColors).length];
 
     return `<tr>
         <td>${dateConvert(created_at)}</td>
         <td>${durationColumn}</td>
-        <td>${body}</td>
+        <td><div class="dot" style="background-color: ${color}"></div> ${body}</td>
     </tr>`;
   })
   .join("\n");
@@ -90,14 +96,13 @@ const totalDuration = Object.values(durationStats).reduce((memo, value) => {
  return memo + value;
 }, 0);
 
-const chartColors = ['#a0c659', '#00BE96', '#c68759']
 chart = Object.entries(durationStats).map(([name, projectDuration], index) => {
-    const label = timeConvert(projectDuration);
     const percent = ((100/ totalDuration) * projectDuration);
+    const color = chartColors[index];
 
-  return `<div title="${timeConvert(projectDuration)}" style="width: ${percent}%; background-color: ${chartColors[index]};" class="barchart-item">
-    <span class="barchart-item--label">${name}</span>
-  </div>`
+    projectColors[name] = color;
+
+  return `<div title="${timeConvert(projectDuration)}" style="width: ${percent}%; background-color: ${color};" class="barchart-item"></div>`
 }).join('')
 
 total = timeConvert(totalDuration);
