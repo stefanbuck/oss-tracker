@@ -62,6 +62,25 @@ function dateConvert(dateString) {
   ].join(" ");
 }
 
+function renderTableRow({ created_at, durationString, color, projectName }) {
+  return `<tr>
+  <td>${dateConvert(created_at)}</td>
+  <td>${durationString}</td>
+  <td><div class="project-color" style="background-color: ${color}"></div> ${projectName}</td>
+</tr>`;
+}
+
+function renderLegendItem({ color, projectName}) {
+  return `<li>
+  <span class="project-color" style="background-color:${color};"></span>
+  <span class="project-name">${projectName}</span>
+</li>`
+}
+
+function renderBarItem({ projectDuration, percent, color}) {
+  return `<div title="${timeConvert(projectDuration)}" style="width: ${percent}%; background-color: ${color};" class="barchart-item"></div>`;
+}
+
 let total = '';
 let tableBody = '';
 let chart = ''
@@ -77,24 +96,17 @@ tableBody = Object.entries(data)
     const durationInSeconds =
       (new Date(updated_at).getTime() - new Date(created_at).getTime()) / 1000;
 
-    let durationColumn = '<i>Currently working on this</i>';
+    let durationString = '<i>Currently working on this</i>';
     if (durationInSeconds > 0) {
       durationStats[projectName] = (durationStats[projectName] || 0) + durationInSeconds;
-      durationColumn = timeConvert(durationInSeconds)
+      durationString = timeConvert(durationInSeconds)
     }
 
     const color = projectColors[projectName] = projectColors[projectName] || chartColors[Object.keys(projectColors).length];
 
-    chartLegend[projectName] = `<li>
-    <span class="project-color" style="background-color:${color};"></span>
-    <span class="project-name">${projectName}</span>
-  </li>`
+    chartLegend[projectName] = renderLegendItem({ projectName, color});
 
-    return `<tr>
-        <td>${dateConvert(created_at)}</td>
-        <td>${durationColumn}</td>
-        <td><div class="project-color" style="background-color: ${color}"></div> ${body}</td>
-    </tr>`;
+    return renderTableRow( { created_at, durationString, color, projectName });
   })
   .join("\n");
 
@@ -108,7 +120,7 @@ chart = Object.entries(durationStats).map(([name, projectDuration], index) => {
 
     projectColors[name] = color;
 
-  return `<div title="${timeConvert(projectDuration)}" style="width: ${percent}%; background-color: ${color};" class="barchart-item"></div>`
+  return renderBarItem({ projectDuration, percent, color})
 }).join('')
 
 total = timeConvert(totalDuration);
