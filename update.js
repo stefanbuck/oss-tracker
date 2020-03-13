@@ -65,8 +65,9 @@ function dateConvert(dateString) {
 let total = '';
 let tableBody = '';
 let chart = ''
+let chartLegend = {};
 
-const chartColors = ['#89e051',  '#f1e05a', '#00ADD8', '#b07219', '#384d54', '#e34c26']
+const chartColors = ['#89e051',  '#f1e05a', '#00ADD8', '#384d54', '#e34c26']
 const projectColors = {};
 
 tableBody = Object.entries(data)
@@ -84,10 +85,15 @@ tableBody = Object.entries(data)
 
     const color = projectColors[projectName] = projectColors[projectName] || chartColors[Object.keys(projectColors).length];
 
+    chartLegend[projectName] = `<li>
+    <span class="project-color" style="background-color:${color};"></span>
+    <span class="project-name">${projectName}</span>
+  </li>`
+
     return `<tr>
         <td>${dateConvert(created_at)}</td>
         <td>${durationColumn}</td>
-        <td><div class="dot" style="background-color: ${color}"></div> ${body}</td>
+        <td><div class="project-color" style="background-color: ${color}"></div> ${body}</td>
     </tr>`;
   })
   .join("\n");
@@ -106,6 +112,7 @@ chart = Object.entries(durationStats).map(([name, projectDuration], index) => {
 }).join('')
 
 total = timeConvert(totalDuration);
+chartLegend = Object.values(chartLegend).join('');
 
 const finalHTML = eval(`\`${html}\``);
 

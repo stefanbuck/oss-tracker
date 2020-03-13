@@ -106,16 +106,29 @@
         height: 18px;
       }
 
-      .dot {
+      .project-color {
         display: inline-block;
         height: 12px;
         width: 12px;
         border-radius: 50%;
       }
 
-      @media only screen and (max-width: 640px) {
-        .mobile-none {
-          display: none;
+      .project-legend {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+
+      .project-legend .project-name {
+        margin-left: 3px;
+      }
+
+      @media only screen and (min-width: 640px) {
+        .project-legend li {
+          display: table-cell;
+          white-space: nowrap;
+          width: 1%;
+          text-align: center;
         }
       }
     </style>
@@ -139,6 +152,21 @@
             Open Source projects.
           </p>
           <div class="barchart"><div title="3 hours and 4 minutes" style="width: 33.978580661045115%; background-color: #89e051;" class="barchart-item"></div><div title="1 hours and 12 minutes" style="width: 13.399396811719088%; background-color: #f1e05a;" class="barchart-item"></div><div title="4 hours and 44 minutes" style="width: 52.6220225272358%; background-color: #00ADD8;" class="barchart-item"></div></div>
+          <ol class="project-legend">
+            <li>
+    <span class="project-color" style="background-color:#89e051;"></span>
+    <span class="project-name">OSS Tracker.</span>
+  </li><li>
+    <span class="project-color" style="background-color:#f1e05a;"></span>
+    <span class="project-name">OctoLinker</span>
+  </li><li>
+    <span class="project-color" style="background-color:#00ADD8;"></span>
+    <span class="project-name">Pull Request Badge</span>
+  </li><li>
+    <span class="project-color" style="background-color:#384d54;"></span>
+    <span class="project-name">OSS Tracker</span>
+  </li>
+          </ol>
         </div>
         <div class="container">
           <table>
@@ -151,52 +179,52 @@
               <tr>
         <td>March 13, 2020</td>
         <td><i>Currently working on this</i></td>
-        <td><div class="dot" style="background-color: #89e051"></div> OSS Tracker.</td>
+        <td><div class="project-color" style="background-color: #89e051"></div> OSS Tracker.</td>
     </tr>
 <tr>
         <td>March 13, 2020</td>
         <td>52 minutes</td>
-        <td><div class="dot" style="background-color: #f1e05a"></div> OctoLinker</td>
+        <td><div class="project-color" style="background-color: #f1e05a"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 12, 2020</td>
         <td>50 minutes</td>
-        <td><div class="dot" style="background-color: #00ADD8"></div> Pull Request Badge</td>
+        <td><div class="project-color" style="background-color: #00ADD8"></div> Pull Request Badge</td>
     </tr>
 <tr>
         <td>March 11, 2020</td>
         <td>22 minutes</td>
-        <td><div class="dot" style="background-color: #00ADD8"></div> Pull Request Badge</td>
+        <td><div class="project-color" style="background-color: #00ADD8"></div> Pull Request Badge</td>
     </tr>
 <tr>
         <td>March 9, 2020</td>
         <td>56 minutes</td>
-        <td><div class="dot" style="background-color: #b07219"></div> OSS Tracker</td>
+        <td><div class="project-color" style="background-color: #384d54"></div> OSS Tracker</td>
     </tr>
 <tr>
         <td>March 8, 2020</td>
         <td>1 hours and 9 minutes</td>
-        <td><div class="dot" style="background-color: #f1e05a"></div> OctoLinker</td>
+        <td><div class="project-color" style="background-color: #f1e05a"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 8, 2020</td>
         <td>45 minutes</td>
-        <td><div class="dot" style="background-color: #f1e05a"></div> OctoLinker</td>
+        <td><div class="project-color" style="background-color: #f1e05a"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 7, 2020</td>
         <td>1 hours and 37 minutes</td>
-        <td><div class="dot" style="background-color: #b07219"></div> OSS Tracker</td>
+        <td><div class="project-color" style="background-color: #384d54"></div> OSS Tracker</td>
     </tr>
 <tr>
         <td>March 7, 2020</td>
         <td>16 minutes</td>
-        <td><div class="dot" style="background-color: #f1e05a"></div> OctoLinker</td>
+        <td><div class="project-color" style="background-color: #f1e05a"></div> OctoLinker</td>
     </tr>
 <tr>
         <td>March 6, 2020</td>
         <td>2 hours and 10 minutes</td>
-        <td><div class="dot" style="background-color: #b07219"></div> OSS Tracker</td>
+        <td><div class="project-color" style="background-color: #384d54"></div> OSS Tracker</td>
     </tr>
             </tbody>
           </table>

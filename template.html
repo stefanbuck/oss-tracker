@@ -106,16 +106,29 @@
         height: 18px;
       }
 
-      .dot {
+      .project-color {
         display: inline-block;
         height: 12px;
         width: 12px;
         border-radius: 50%;
       }
 
-      @media only screen and (max-width: 640px) {
-        .mobile-none {
-          display: none;
+      .project-legend {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+
+      .project-legend .project-name {
+        margin-left: 3px;
+      }
+
+      @media only screen and (min-width: 640px) {
+        .project-legend li {
+          display: table-cell;
+          white-space: nowrap;
+          width: 1%;
+          text-align: center;
         }
       }
     </style>
@@ -139,6 +152,9 @@
             Open Source projects.
           </p>
           <div class="barchart">${chart}</div>
+          <ol class="project-legend">
+            ${chartLegend}
+          </ol>
         </div>
         <div class="container">
           <table>
