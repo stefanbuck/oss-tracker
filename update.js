@@ -62,11 +62,29 @@ function dateConvert(dateString) {
   ].join(" ");
 }
 
+const links = {
+  'OctoLinker': 'https://github.com/stefanbuck/oss-tracker',
+  'OSS Tracker': 'https://github.com/stefanbuck/oss-tracker',
+  'Pull Request Badge': 'https://github.com/stefanbuck/pull-request-badge-app'
+}
+
 function renderTableRow({ created_at, durationString, color, projectName }) {
+
+  const mdLink = /\[([^\[]+)\]\((.*)\)/;
+
+  const match = projectName.match(mdLink);
+  let content = projectName;
+
+  if (links[projectName]) {
+    content = `<a href=${links[projectName]}>${projectName}</a>`
+  }
+  
+  console.log(match)
+
   return `<tr>
   <td>${dateConvert(created_at)}</td>
   <td>${durationString}</td>
-  <td><div class="project-color" style="background-color: ${color}"></div> ${projectName}</td>
+  <td><div class="project-color" style="background-color: ${color}"></div> ${content}</td>
 </tr>`;
 }
 
