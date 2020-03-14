@@ -69,17 +69,11 @@ const links = {
 }
 
 function renderTableRow({ created_at, durationString, color, projectName }) {
-
-  const mdLink = /\[([^\[]+)\]\((.*)\)/;
-
-  const match = projectName.match(mdLink);
   let content = projectName;
 
   if (links[projectName]) {
     content = `<a href=${links[projectName]}>${projectName}</a>`
   }
-  
-  console.log(match)
 
   return `<tr>
   <td>${dateConvert(created_at)}</td>
