@@ -98,7 +98,7 @@ let tableBody = '';
 let chart = ''
 let chartLegend = {};
 
-const chartColors = ['#89e051',  '#f1e05a', '#00ADD8', '#384d54', '#e34c26']
+const chartColors = ['#89e051',  '#f1e05a', '#00ADD8',  '#F54845', '#5C4848', '#D5B984']
 const projectColors = {};
 
 tableBody = Object.entries(data)
