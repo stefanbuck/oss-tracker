@@ -31,11 +31,14 @@ function timeConvert(seconds) {
   let hours = Math.floor(seconds / 3600);
   let minutes = Math.floor((seconds - hours * 3600) / 60);
 
+  const hoursLabel = hours === 1 ? 'hour' : 'hours';
+  const minutesLabel = minutes === 1 ? 'minute' : 'minutes';
+
   if (hours > 0) {
-    return `${hours} hours and ${minutes} minutes`;
+    return `${hours} ${hoursLabel} and ${minutes} ${minutesLabel}`;
   }
 
-  return `${minutes} minutes`;
+  return `${minutes} ${minutesLabel}`;
 }
 
 function dateConvert(dateString) {
