@@ -71,18 +71,26 @@ const links = {
   'Pull Request Badge': 'https://github.com/stefanbuck/pull-request-badge-app'
 }
 
-function renderTableRow({ created_at, durationString, color, projectName }) {
+function renderTableRow({className, created_at, durationString, color, projectName }) {
   let content = projectName;
 
   if (links[projectName]) {
     content = `<a href=${links[projectName]}>${projectName}</a>`
   }
 
-  return `<tr>
+  return `<tr class="${className}">
   <td>${dateConvert(created_at)}</td>
   <td>${durationString}</td>
   <td><div class="project-color" style="background-color: ${color}"></div> ${content}</td>
 </tr>`;
+}
+
+function renderTableShowMore() {
+  return `<tr>
+  <td colspan="3" class="show-more-row" >
+    <button class="js-table-show-more">Show more</button>
+  </td>
+</tr>`
 }
 
 function renderLegendItem({ color, projectName}) {
@@ -97,7 +105,7 @@ function renderBarItem({ projectDuration, percent, color}) {
 }
 
 let total = '';
-let tableBody = '';
+let tableBody = [];
 let chart = ''
 let chartLegend = {};
 
@@ -106,7 +114,7 @@ const projectColors = {};
 
 tableBody = Object.entries(data)
   .reverse()
-  .map(([id, { created_at, updated_at, body }]) => {
+  .map(([id, { created_at, updated_at, body }], index) => {
     const projectName = body.trim();
     const durationInSeconds =
       (new Date(updated_at).getTime() - new Date(created_at).getTime()) / 1000;
@@ -121,9 +129,16 @@ tableBody = Object.entries(data)
 
     chartLegend[projectName] = renderLegendItem({ projectName, color});
 
-    return renderTableRow( { created_at, durationString, color, projectName });
+    const className = index > 19 ? 'hidden' : '';
+
+    return renderTableRow( { className, created_at, durationString, color, projectName });
   })
-  .join("\n");
+
+  if (tableBody.length > 20) {
+    tableBody.push(renderTableShowMore())
+  }
+  
+  tableBody = tableBody.join("\n");
 
 const totalDuration = Object.values(durationStats).reduce((memo, value) => {
  return memo + value;
