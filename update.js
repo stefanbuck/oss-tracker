@@ -63,7 +63,7 @@ function dateConvert(dateString) {
 }
 
 const links = {
-  'OctoLinker': 'https://github.com/stefanbuck/oss-tracker',
+  'OctoLinker': 'https://github.com/OctoLinker/OctoLinker',
   'OSS Tracker': 'https://github.com/stefanbuck/oss-tracker',
   'Pull Request Badge': 'https://github.com/stefanbuck/pull-request-badge-app'
 }
