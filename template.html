@@ -98,6 +98,20 @@
         color: #1a202c;
       }
 
+      .hidden {
+        display: none;
+      }
+
+      .show-more-row {
+        text-align: center;
+        background: #fff;
+      }
+
+      .show-more-row button {
+        margin: 8px 0;
+        padding: 4px 6px;
+      }
+
       footer {
         padding-top: 24px;
         text-align: center;
@@ -189,5 +203,18 @@
         </div>
       </div>
     </div>
+    <script>
+      const totalEntries = document.querySelector('tbody').childElementCount - 1;
+      const showMoreCount = 20;
+
+      document.querySelector('.js-table-show-more').addEventListener('click', () => {
+        [...document.querySelectorAll('tr.hidden')].slice(0, showMoreCount).forEach(el => {
+          el.classList.remove('hidden');
+          if (el.rowIndex === totalEntries) {
+            event.target.closest('tr').classList.add('hidden');
+          }
+        })
+      })
+    </script>
   </body>
 </html>
